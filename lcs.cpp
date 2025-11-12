@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -23,6 +24,25 @@ int lcs(string x, string y){
     cout << endl;
   }
 
+  string lcs = "";
+  int i = n , j = m;
+
+  while (i > 0 && j > 0){
+    if (x[i-1] == y[j-1]){
+      lcs += x[i-1];
+      i--;
+      j--;
+    }
+    else {
+        if (dp[i-1][j] > dp[i][j-1])
+          i--;
+        else 
+          j--;
+    }
+  }
+
+  reverse(lcs.begin() , lcs.end());
+  cout << lcs << endl;
   return dp[n][m];
 }
 
